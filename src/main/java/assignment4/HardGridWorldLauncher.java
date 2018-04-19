@@ -49,7 +49,7 @@ public class HardGridWorldLauncher {
 
 //	private static Integer mapLen = map.length-1;
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception{
 		// convert to BURLAP indexing
 		int[][] map = MapPrinter.mapToMatrix(userMap);
 		int maxX = map.length-1;
@@ -88,6 +88,7 @@ public class HardGridWorldLauncher {
 			runner.runSarsa(gen, domain, initialState, rf, tf, env, showSarsaPolicyMap);
 		}
 		AnalysisAggregator.printAggregateAnalysis();
+		AnalysisAggregator.writeAnalysisToCsv();
 	}
 
 

@@ -2,6 +2,9 @@ package assignment4.util;
 
 import burlap.oomdp.core.values.DoubleArrayValue;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -169,5 +172,67 @@ public final class AnalysisAggregator {
 		printPolicyIterationRewards();
 		printQLearningRewards();
 		printSarsaRewards();
+	}
+	public static void writeAnalysisToCsv() throws Exception{
+		try {
+			BufferedWriter br = new BufferedWriter(new FileWriter("rewards.csv"));
+			StringBuilder sb = getRewardStringBuilder();
+			br.write(sb.toString());
+			br.close();
+			br = new BufferedWriter(new FileWriter("times.csv"));
+			sb = getTimeResultsStringBuilder();
+			br.write(sb.toString());
+			br.close();
+			br = new BufferedWriter(new FileWriter("steps.csv"));
+			sb = getStepResultsStringBuilder();
+			br.write(sb.toString());
+			br.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		System.out.println("Analysis written to CSV files");
+
+	}
+
+	private static StringBuilder getRewardStringBuilder() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("Number Of Iterations, Value Iteration, Policy Iteration, Q-Learning, SARSA\n");
+		for (int i=0; i < numIterations.size(); i++) {
+			sb.append(Integer.toString(numIterations.get(i)) + ",");
+			sb.append(rewardsForValueIteration.get(i) + ",");
+			sb.append(rewardsForPolicyIteration.get(i) + ",");
+			sb.append(rewardsForQLearning.get(i) + ",");
+			sb.append(rewardsForSarsa.get(i) + ",");
+			sb.append("\n");
+		}
+		return sb;
+	}
+
+	private static StringBuilder getTimeResultsStringBuilder() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("Number Of Iterations, Value Iteration, Policy Iteration, Q-Learning, SARSA\n");
+		for (int i=0; i < numIterations.size(); i++) {
+			sb.append(Integer.toString(numIterations.get(i)) + ",");
+			sb.append(millisecondsToFinishValueIteration.get(i) + ",");
+			sb.append(millisecondsToFinishPolicyIteration.get(i) + ",");
+			sb.append(millisecondsToFinishQLearning.get(i) + ",");
+			sb.append(millisecondsToFinishSarsa.get(i) + ",");
+			sb.append("\n");
+		}
+		return sb;
+	}
+
+	private static StringBuilder getStepResultsStringBuilder() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("Number Of Iterations, Value Iteration, Policy Iteration, Q-Learning, SARSA\n");
+		for (int i=0; i < numIterations.size(); i++) {
+			sb.append(Integer.toString(numIterations.get(i)) + ",");
+			sb.append(stepsToFinishValueIteration.get(i) + ",");
+			sb.append(stepsToFinishPolicyIteration.get(i) + ",");
+			sb.append(stepsToFinishQLearning.get(i) + ",");
+			sb.append(stepsToFinishSarsa.get(i) + ",");
+			sb.append("\n");
+		}
+		return sb;
 	}
 }

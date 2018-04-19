@@ -18,8 +18,8 @@ public class EasyGridWorldLauncher {
 	private static boolean visualizeInitialGridWorld = true; //Loads a GUI with the agent, walls, and goal
 	
 	//runValueIteration, runPolicyIteration, and runQLearning indicate which algorithms will run in the experiment
-	private static boolean runValueIteration = false;
-	private static boolean runPolicyIteration = false;
+	private static boolean runValueIteration = true;
+	private static boolean runPolicyIteration = true;
 	private static boolean runQLearning = true;
 	private static boolean runSarsa = true;
 	
@@ -43,7 +43,7 @@ public class EasyGridWorldLauncher {
 	
 //	private static Integer mapLen = map.length-1;
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		// convert to BURLAP indexing
 		int[][] map = MapPrinter.mapToMatrix(userMap);
 		int maxX = map.length-1;
@@ -82,6 +82,7 @@ public class EasyGridWorldLauncher {
 			runner.runSarsa(gen, domain, initialState, rf, tf, env, showSarsaPolicyMap);
 		}
 		AnalysisAggregator.printAggregateAnalysis();
+		AnalysisAggregator.writeAnalysisToCsv();
 	}
 
 
