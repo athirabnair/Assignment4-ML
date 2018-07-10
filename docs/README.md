@@ -7,6 +7,6 @@ The problem with small number of states can be viewed as a small search problem 
 
 ![Small Grid World]({{ "/assets/images/smallgridworld.jpeg" | absolute_url }})
 
-The problem with large number of states (shown on the right) is like the hallway problem. It can be viewed as having four rooms and four hallways at the intersection of any two rooms. The grid is a 11x11 grid with the agent at (0,0) initially and the target at (10,10). The walls are through the 5th row and 5th column, with one block acting as a hallway on each wall. The problem is constructed in such a way that one hallway may be slightly closer to the initial state of the agent than the other nearby hallway. This can give rise to varied policies depending on the reinforcement algorithm used.
+The problem with large number of states is like the hallway problem. It can be viewed as having four rooms and four hallways at the intersection of any two rooms. The grid is a 11x11 grid with the agent at (0,0) initially and the target at (10,10). The walls are through the 5th row and 5th column, with one block acting as a hallway on each wall. The problem is constructed in such a way that one hallway may be slightly closer to the initial state of the agent than the other nearby hallway. This can give rise to varied policies depending on the reinforcement algorithm used.
 
 ![Large Grid World]({{ "/assets/images/largegridworld.jpeg" | absolute_url }})
