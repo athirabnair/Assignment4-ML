@@ -41,11 +41,10 @@ Though the initial reward is slightly lower in case of value iteration, it is al
 
 The next step was to try out model-free reinforcement learning algorithms on the same MDP and see how it performs as compared to the algorithms used before that learns from a model. It would definitely take more iterations than value or policy iteration for it to converge as it has to learn the model. The two reinforcement learning algorithms used were **Q-Learning** and **SARSA**.
 
-The first step in applying reinforcement learning is to tweak the parameters so the agent can learn. Since the goal is far away and there are no intermediate rewards, not discounting the final reward by too much is important. The discount rate 𝛾 at 0.99 gave good results in general.
-
-The value of the *learning rate 𝛼* and *epsilon-greedy algorithm’s randomness rate 𝜖* are what changes the outcomes of the algorithm i.e. the policy the most. Fine-tuning these values gave rise to varying results.
-
-The value of epsilon decides the fraction of random actions taken by the agent as opposed to picking the best one. The value of epsilon is initially fixed between 0.4 and 0.7 to have a half-and-half random nature, and then is reduced by 0.99 every episode. This ensures that as the algorithm trains and learns the model, it reduces the rate of random actions it takes.
+1. The first step in applying reinforcement learning is to tweak the parameters so the agent can learn. Since the goal is far away and there are no intermediate rewards, not discounting the final reward by too much is important. The discount rate 𝛾 at 0.99 gave good results in general.
+2. The value of the *learning rate* 𝛼 and *epsilon-greedy algorithm’s randomness rate* 𝜖 are what changes the outcomes of the algorithm i.e. the policy the most. Fine-tuning these values gave rise to varying results.
+3. The value of epsilon decides the fraction of random actions taken by the agent as opposed to picking the best one. The value of epsilon is initially fixed at say 0.5 to have random decision making, and is then reduced by 0.99 every episode. This ensures that the model initially explores and doesn't get stuck, but as it learns, it should reduce these random actions eventually.
+4. Next pick the learning that ensures that the algorithm learnt rewards slowly and did not converge too quickly. A higher rate than that gave curves that were oscillating too much and did not converge. You have to make sure it's not too slow.
 
 The graph for Q-Learning convergence is shown and we see that Q-Learning converges at around 50-60 iterations.
 
