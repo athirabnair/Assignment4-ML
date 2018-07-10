@@ -21,11 +21,13 @@ The problem with large number of states is like the hallway problem. It can be v
 
 ### Easy MDP
 
+#### Value and Policy Iteration
+
 The first experiment was to perform value iteration on the small grid, and it converged within 30 iterations to the optimal policy.
 
 ![Optimal Policy]({{ "/assets/images/easymdp/optimalpolicy.jpeg" | absolute_url }})
 
-When policy iteration was run on the small grid, it gave the exact same results as value iteration. Hence, value iteration and policy iteration converge to the same answer. Policy iteration also converges within 30 iterations.
+When policy iteration was run on the small grid, it gave the exact same results as value iteration. *Hence, value iteration and policy iteration converge to the same answer.* Policy iteration also converges within 30 iterations.
 
 ![Value Iteration]({{ "/assets/images/easymdp/valueiter.jpeg" | absolute_url }})
 ![Policy Iteration]({{ "/assets/images/easymdp/policyiter.jpeg" | absolute_url }})
@@ -33,3 +35,18 @@ When policy iteration was run on the small grid, it gave the exact same results 
 Though the initial reward is slightly lower in case of value iteration, it is also more stable as episodes increase. Both algorithms require similar number of iterations to converge to the optimal policy but value iteration takes much lesser time to generate the optimal policy.
 
 ![Times]({{ "/assets/images/easymdp/time.jpeg" | absolute_url }})
+
+
+#### Reinforcement learning
+
+The next step was to try out model-free reinforcement learning algorithms on the same MDP and see how it performs as compared to the algorithms used before that learns from a model. It would definitely take more iterations than value or policy iteration for it to converge as it has to learn the model. The two reinforcement learning algorithms used were **Q-Learning** and **SARSA**.
+
+The first step in applying reinforcement learning is to tweak the parameters so the agent can learn. Since the goal is far away and there are no intermediate rewards, not discounting the final reward by too much is important. The discount rate 𝛾 at 0.99 gave good results in general.
+
+The value of the *learning rate 𝛼* and *epsilon-greedy algorithm’s randomness rate 𝜖* are what changes the outcomes of the algorithm i.e. the policy the most. Fine-tuning these values gave rise to varying results.
+
+The value of epsilon decides the fraction of random actions taken by the agent as opposed to picking the best one. The value of epsilon is initially fixed between 0.4 and 0.7 to have a half-and-half random nature, and then is reduced by 0.99 every episode. This ensures that as the algorithm trains and learns the model, it reduces the rate of random actions it takes.
+
+The graph for Q-Learning convergence is shown and we see that Q-Learning converges at around 50-60 iterations.
+
+![Times]({{ "/assets/images/easymdp/qlearning.jpeg" | absolute_url }})
