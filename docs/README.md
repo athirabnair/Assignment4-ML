@@ -41,11 +41,33 @@ Though the initial reward is slightly lower in case of value iteration, it is al
 
 The next step was to try out model-free reinforcement learning algorithms on the same MDP and see how it performs as compared to the algorithms used before that learns from a model. It would definitely take more iterations than value or policy iteration for it to converge as it has to learn the model. The two reinforcement learning algorithms used were **Q-Learning** and **SARSA**.
 
-1. The first step in applying reinforcement learning is to tweak the parameters so the agent can learn. Since the goal is far away and there are no intermediate rewards, not discounting the final reward by too much is important. The discount rate 𝛾 at 0.99 gave good results in general.
-2. The value of the *learning rate* 𝛼 and *epsilon-greedy algorithm’s randomness rate* 𝜖 are what changes the outcomes of the algorithm i.e. the policy the most. Fine-tuning these values gave rise to varying results.
-3. The value of epsilon decides the fraction of random actions taken by the agent as opposed to picking the best one. The value of epsilon is initially fixed at say 0.5 to have random decision making, and is then reduced by 0.99 every episode. This ensures that the model initially explores and doesn't get stuck, but as it learns, it should reduce these random actions eventually.
-4. Next pick the learning that ensures that the algorithm learnt rewards slowly and did not converge too quickly. A higher rate than that gave curves that were oscillating too much and did not converge. You have to make sure it's not too slow.
++ The first step in applying RL is to tweak the parameters so the agent can learn. Since the goal is far away and there are no intermediate rewards, not discounting the final reward by too much is important. The discount rate 𝛾 at 0.99 gave good results in general.
++ The value of the *learning rate* 𝛼 and *epsilon-greedy algorithm’s randomness rate* 𝜖 are what changes the outcomes of the algorithm i.e. the policy the most. Fine-tuning these values gave rise to varying results.  
++ The value of epsilon decides the fraction of random actions taken by the agent as opposed to picking the best one. The value of epsilon is initially fixed at say 0.5 to have random decision making, and is then reduced by 0.99 every episode. This ensures that the model initially explores and doesn't get stuck, but as it learns, it should reduce these random actions eventually.
++ Next pick the learning that ensures that the algorithm learnt rewards slowly and did not converge too quickly. A higher rate than that gave curves that were oscillating too much and did not converge. You have to make sure it's not too slow.
 
 The graph for Q-Learning convergence is shown and we see that Q-Learning converges at around 50-60 iterations.
 
-![Times]({{ "/assets/images/easymdp/qlearning.jpeg" | absolute_url }})
+![Q-Learning]({{ "/assets/images/easymdp/qlearning.jpeg" | absolute_url }})
+
+One such optimal policy obtained from Q-Learning after 100 iterations is shown. The algorithm produces slightly different results in the areas on the left, where the agent’s decision to go either up or right can change the optimal policy from thereon. Since MDPs worry about only the current state and the next state, the optimal policy depends on the randomness of the actions taken by the agent in the initial episodes. We see that it more or less corresponds to the optimal policy obtained from value and policy iteration (near the goal states in particular).
+
+The small grid world problem is designed in such a way that there are two paths that may be taken, both nearly equal.
+
+![Q-Learning Optimal Policy]({{ "/assets/images/easymdp/qlearning_policy.jpeg" | absolute_url }})
+
+In case of SARSA, the parameters that worked best were 𝛼=0.3, 𝛾=0.99, 𝜖=0.6, 𝜆_𝑠𝑎𝑟𝑠𝑎=0.7. 𝜆_𝑠𝑎𝑟𝑠𝑎 is the parameter in SARSA that determines the extent to which future interactions are considered when updating the Q-value of each episode. The larger the value, the more these interactions are considered. When 𝜆𝑠𝑎𝑟𝑠𝑎 is not too high, the algorithm is much more stable. The convergence graph of SARSA is shown above. It can be seen that SARSA also converges are around 50-60, maybe slighter faster than Q-Learning did.
+
+![SARSA]({{ "/assets/images/easymdp/sarsa.jpeg" | absolute_url }})
+
+
+Value and policy iteration converge the fastest and more stable, owing to the model-based learning. Q-Learning and SARSA also converge pretty quickly because of the small number of states in this MDP. The number of steps to reach the terminal state is the opposite curve of what we see for rewards vs episodes, and it stabilizes to a very low value once it converges.
+
+![Steps]({{ "/assets/images/easymdp/steps.jpeg" | absolute_url }})
+![Rewards]({{ "/assets/images/easymdp/rewards.jpeg" | absolute_url }})
+
+> One of the advantages of Q-Learning and SARSA is that the time required to generate the optimal policy is much smaller compared to value iteration and policy iteration.
+
+Since in each episode, only the Q-values are updated for the two RL algorithms, it is just O(1). For policy and value iteration, there are ‘iterations’ in each episode and seems to increase linearly as O(n).
+
+![Times]({{ "/assets/images/easymdp/times_comparison.jpeg" | absolute_url }})
