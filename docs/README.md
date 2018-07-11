@@ -49,14 +49,13 @@ The next step was to try out model-free reinforcement learning algorithms on the
 The graph for Q-Learning convergence is shown and we see that Q-Learning converges at around 50-60 iterations.
 
 ![Q-Learning]({{ "/assets/images/easymdp/qlearning.jpeg" | absolute_url }})
+![Q-Learning Optimal Policy]({{ "/assets/images/easymdp/qlearning_policy.jpeg" | absolute_url }})
 
 One such optimal policy obtained from Q-Learning after 100 iterations is shown. The algorithm produces slightly different results in the areas on the left, where the agent’s decision to go either up or right can change the optimal policy from thereon. Since MDPs worry about only the current state and the next state, the optimal policy depends on the randomness of the actions taken by the agent in the initial episodes. We see that it more or less corresponds to the optimal policy obtained from value and policy iteration (near the goal states in particular).
 
 The small grid world problem is designed in such a way that there are two paths that may be taken, both nearly equal.
 
-![Q-Learning Optimal Policy]({{ "/assets/images/easymdp/qlearning_policy.jpeg" | absolute_url }})
-
-In case of SARSA, the parameters that worked best were 𝛼=0.3, 𝛾=0.99, 𝜖=0.6, 𝜆_𝑠𝑎𝑟𝑠𝑎=0.7. 𝜆_𝑠𝑎𝑟𝑠𝑎 is the parameter in SARSA that determines the extent to which future interactions are considered when updating the Q-value of each episode. The larger the value, the more these interactions are considered. When 𝜆𝑠𝑎𝑟𝑠𝑎 is not too high, the algorithm is much more stable. The convergence graph of SARSA is shown above. It can be seen that SARSA also converges are around 50-60, maybe slighter faster than Q-Learning did.
+In case of SARSA, there is an extra parameter &lambda;𝑠𝑎𝑟𝑠𝑎, which determines the extent to which future interactions are considered when updating the Q-value of each episode. The larger the value, the more these interactions are considered. When &lambda;𝑠𝑎𝑟𝑠𝑎 is not too high, the algorithm is much more stable. The convergence graph of SARSA is shown above. It can be seen that SARSA also converges are around 50-60, maybe slighter faster than Q-Learning did.
 
 ![SARSA]({{ "/assets/images/easymdp/sarsa.jpeg" | absolute_url }})
 
