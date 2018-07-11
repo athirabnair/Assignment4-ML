@@ -10,7 +10,7 @@ The problem with small number of states can be viewed as a small search problem 
 
 > The interesting part to observe in this MDP would be to see if the policy figures that out or not.
 
-![Small Grid World]({{ "/assets/images/smallgridworld.jpeg" | absolute_url }})
+![Small Grid World]({{ "/assets/images/smallgridworld.jpeg" | absolute_url }}){:height="70%" width="70%"}
 
 The problem with large number of states is like the hallway problem. It can be viewed as having four rooms and four hallways at the intersection of any two rooms.
 - The grid is a 11x11 grid with the agent at (0,0) initially and the target at (10,10).
@@ -18,8 +18,7 @@ The problem with large number of states is like the hallway problem. It can be v
 
 > The problem is constructed in such a way that one hallway may be slightly closer to the initial state of the agent than the other nearby hallway. This can give rise to varied policies depending on the reinforcement algorithm used.
 
-![Large Grid World]({{ "/assets/images/largegridworld.jpeg" | absolute_url }})
-
+![Large Grid World]({{ "/assets/images/largegridworld.jpeg" | absolute_url }}){:height="70%" width="70%"}
 
 ## Easy MDP
 
@@ -27,7 +26,7 @@ The problem with large number of states is like the hallway problem. It can be v
 
 The first experiment was to perform value iteration on the small grid, and it converged within 30 iterations to the optimal policy.
 
-![Optimal Policy]({{ "/assets/images/easymdp/optimalpolicy.jpeg" | absolute_url }})
+![Optimal Policy]({{ "/assets/images/easymdp/optimalpolicy.jpeg" | absolute_url }}){:height="60%" width="60%"}
 
 When policy iteration was run on the small grid, it gave the exact same results as value iteration. *Hence, value iteration and policy iteration converge to the same answer.* Policy iteration also converges within 30 iterations.
 
@@ -63,7 +62,7 @@ The graph for Q-Learning convergence is shown and we see that Q-Learning converg
 
 One such optimal policy obtained from Q-Learning after 100 iterations is shown. The algorithm produces slightly different results in the areas on the left, where the agent’s decision to go either up or right can change the optimal policy from thereon.
 
-![Q-Learning Optimal Policy]({{ "/assets/images/easymdp/qlearning_policy.jpeg" | absolute_url }})
+![Q-Learning Optimal Policy]({{ "/assets/images/easymdp/qlearning_policy.jpeg" | absolute_url }}){:height="60%" width="60%"}
 
 Since MDPs worry about only the current state and the next state, the optimal policy depends on the randomness of the actions taken by the agent in the initial episodes. We see that it more or less corresponds to the optimal policy obtained from value and policy iteration (near the goal states in particular).
 
@@ -96,11 +95,11 @@ This MDP has 74 states as compared to 18 states in the previous MDP. The grid is
 
 It can be observed that depending on the first move of the agent, the agent can move to either the room on the bottom right or the room on the top left and then proceed towards the goal. The optimal policy is slightly biased towards the hallway on the top left as it is closer to the agent’s location.
 
-![Optimal Policy]({{ "/assets/images/hardmdp/value_policy.jpeg" | absolute_url }})
+![Optimal Policy]({{ "/assets/images/hardmdp/value_policy.jpeg" | absolute_url }}){:height="60%" width="60%"}
 
 To test that hypothesis, I tried value iteration by slightly moving the location of the first two hallways such that the top left hallway is further, and the bottom hallway is closer to the agent. We see that now the optimal policy is biased towards the bottom hallway.
 
-![Biased Policy]({{ "/assets/images/hardmdp/policy_biased.jpeg" | absolute_url }})
+![Biased Policy]({{ "/assets/images/hardmdp/policy_biased.jpeg" | absolute_url }}){:height="60%" width="60%"}
 
 ### Reinforcement learning
 
@@ -112,7 +111,7 @@ The major difference seen in this MDP compared to the previous one is that **_Q-
 
 > It’s also possible to see an interesting crowding behavior occurring in the hallways where the optimal policy looks like its queueing around the hallway. The general direction of the optimal policy is aligned towards the goal.
 
-![Q-Learning Policy]({{ "/assets/images/hardmdp/qlearning_policy.jpeg" | absolute_url }})
+![Q-Learning Policy]({{ "/assets/images/hardmdp/qlearning_policy.jpeg" | absolute_url }}){:height="60%" width="60%"}
 
 The trend of the time taken to converge to the optimal policy is same as in the previous MDP. Q-Learning seems to be the fastest algorithm and Policy Iteration the slowest. Overall, the RL algorithms are much faster.
 
