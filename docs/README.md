@@ -21,9 +21,9 @@ The problem with large number of states is like the hallway problem. It can be v
 ![Large Grid World]({{ "/assets/images/largegridworld.jpeg" | absolute_url }})
 
 
-### Easy MDP
+## Easy MDP
 
-#### Value and Policy Iteration
+### Value and Policy Iteration
 
 The first experiment was to perform value iteration on the small grid, and it converged within 30 iterations to the optimal policy.
 
@@ -39,7 +39,7 @@ Though the initial reward is slightly lower in case of value iteration, it is al
 ![Times]({{ "/assets/images/easymdp/time.jpeg" | absolute_url }})
 
 
-#### Reinforcement learning
+### Reinforcement learning
 
 The next step was to try out model-free reinforcement learning algorithms on the same MDP and see how it performs as compared to the algorithms used before that learns from a model. It would definitely take more iterations than value or policy iteration for it to converge as it has to learn the model. The two reinforcement learning algorithms used were **Q-Learning** and **SARSA**.
 
@@ -55,7 +55,7 @@ The next step was to try out model-free reinforcement learning algorithms on the
 ... A higher rate than that gave curves that were oscillating too much and did not converge.
 ... You have to make sure it's not too slow.
 
-##### Q-Learning
+#### Q-Learning
 
 The graph for Q-Learning convergence is shown and we see that Q-Learning converges at around 50-60 iterations.
 
@@ -69,7 +69,7 @@ Since MDPs worry about only the current state and the next state, the optimal po
 
 The small grid world problem is designed in such a way that there are two paths that may be taken, both nearly equal.
 
-##### SARSA
+#### SARSA
 
 In case of SARSA, there is an extra parameter &lambda;𝑠𝑎𝑟𝑠𝑎, which determines the extent to which future interactions are considered when updating the Q-value of each episode. The larger the value, the more these interactions are considered. When &lambda;𝑠𝑎𝑟𝑠𝑎 is not too high, the algorithm is much more stable. The convergence graph of SARSA is shown above. It can be seen that SARSA also converges are around 50-60, maybe slighter faster than Q-Learning did.
 
@@ -87,12 +87,12 @@ Since in each episode, only the Q-values are updated for the two RL algorithms, 
 
 ![Times]({{ "/assets/images/easymdp/times_comparison.jpeg" | absolute_url }})
 
-### Hard MDP
+## Hard MDP
 
 
 This MDP has 74 states as compared to 18 states in the previous MDP. The grid is designed like a hall with four rooms, with hallways connecting any two rooms.
 
-#### Value and Policy Iteration
+### Value and Policy Iteration
 
 It can be observed that depending on the first move of the agent, the agent can move to either the room on the bottom right or the room on the top left and then proceed towards the goal. The optimal policy is slightly biased towards the hallway on the top left as it is closer to the agent’s location.
 
@@ -102,7 +102,7 @@ To test that hypothesis, I tried value iteration by slightly moving the location
 
 ![Biased Policy]({{ "/assets/images/hardmdp/policy_biased.jpeg" | absolute_url }})
 
-#### Reinforcement learning
+### Reinforcement learning
 
 The major difference seen in this MDP compared to the previous one is that **_Q-Learning takes a lot longer to converge._**
 
